@@ -1,0 +1,41 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form{
+  background-color: aliceblue;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  font-size: 20px;
+}
+
+form div{
+  padding: 10px;
+}
+
+form  label{
+  display: block;
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid black;
+  margin-top: 3px;
+  margin-left: 15px;
+  padding: 4px 0px;
+}
+
+button{
+  display: block;
+  text-align: center;
+  background-color: rgb(189, 26, 189);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 30px;
+}

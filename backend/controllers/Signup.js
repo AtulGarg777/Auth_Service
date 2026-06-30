@@ -13,7 +13,7 @@ const signup = async (req, res) => {
         let userModel = new UserModel({ name, email, password });
         userModel.password = await bcrypt.hash(password, 10);
         await userModel.save();
-        res.status(201).json({ message: 'login successfully', success: true });
+        res.status(201).json({ message: 'signup successfully', success: true });
 
     } catch (error) {
         console.log(error);

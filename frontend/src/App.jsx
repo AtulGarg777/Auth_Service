@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import RefreshHandle from './pages/RefreshHandle'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer/>
       <RefreshHandle setIsAuthenticated={setIsAuthenticated} />
       <Routes>
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />

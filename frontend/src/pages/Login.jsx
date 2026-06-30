@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { handleError, handleSuccess } from '../utils';
-import { ToastContainer } from 'react-toastify';
 
 function Login() {
 
@@ -67,7 +66,6 @@ function Login() {
 
                 <h3>Don't Have an account <Link to='/signup'>SignUp</Link></h3>
             </form>
-            <ToastContainer/>
         </div>
     )
 }

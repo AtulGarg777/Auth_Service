@@ -33,16 +33,16 @@ function Signup() {
                 body: JSON.stringify(signupInfo)
             })
             const result = await response.json();
-            const { success, message ,error} = result;
+            const { success, message, error } = result;
 
             if (success) {
                 handleSuccess(message);
                 setTimeout(() => {
                     navigate('/login');
                 }, 1000);
-            }else if(error){
+            } else if (error) {
                 handleError(error?.details[0].message);
-            }else if(!success){
+            } else if (!success) {
                 handleError(message);
             }
 
@@ -56,6 +56,7 @@ function Signup() {
     return (
         <div>
             <form action="" onSubmit={handleSubmit}>
+                <h2>Sign Up</h2>
                 <div>
                     <label htmlFor="name">Name</label>
                     <input type="text" placeholder='Enter Your Name' name='name' value={signupInfo.name} onChange={handleValue} />

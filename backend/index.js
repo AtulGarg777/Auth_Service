@@ -20,3 +20,5 @@ app.get('/home', (req, res) => {
 app.listen(process.env.PORT || 8000, () => {
     console.log('server started');
 })
+
+module.exports = app;

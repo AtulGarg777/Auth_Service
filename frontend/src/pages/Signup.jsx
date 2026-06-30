@@ -23,7 +23,6 @@ function Signup() {
         if (!name || !email || !password) {
             return handleError('name, email and password is required');
         }
-        handleSuccess('user registred successfully');
         try {
             const url = 'http://localhost:8000/auth/signup';
             let response = await fetch(url, {

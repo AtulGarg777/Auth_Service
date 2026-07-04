@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import RefreshHandle from './pages/RefreshHandle'
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
+import SearchPage from './pages/SearchPage'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={<Navigate to='/login' />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/search' element={<SearchPage />} />
       </Routes>
     </>
   )

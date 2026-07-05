@@ -3,7 +3,7 @@ import { AudioContext } from '../../AudioContext';
 
 
 function MusicBar() {
-  const { currentTrack, isPlaying, togglePlayPause, handleNext, handlePrev, handleSeek, duration, currentTime } = useContext(AudioContext);
+  const { currentTrack, isPlaying, togglePlayPause, handleNext, handlePrev, handleSeek, duration, currentTime,handleVolume,songVolume } = useContext(AudioContext);
 
   function formatTime(timeInSeconds) {
     let minutes = Math.floor(timeInSeconds / 60);
@@ -11,7 +11,7 @@ function MusicBar() {
 
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
-  
+
 
   if (!currentTrack) return null;
   return (
@@ -39,8 +39,8 @@ function MusicBar() {
             <p style={{cursor:'pointer'}}><i className='fa-regular fa-heart'></i></p>
           </div> */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ display: 'inline-block' }}><i className='fa-solid fa-volume-high'></i></p>
-            <input type="range" max='100' />
+            <p style={{ display: 'inline-block' }}><i className={`fa-solid ${songVolume?`${songVolume<50?'fa-volume-low':'fa-volume-high'}`:'fa-volume-xmark'}`}></i></p>
+            <input type="range" max='100' onChange={(e)=>{handleVolume(e)}} value={songVolume}/>
           </div>
         </div>
       </div>

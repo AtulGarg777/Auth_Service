@@ -84,10 +84,8 @@
 }
 
 .header_inp input {
-    color: white;
     padding: 5px 10px;
     border-radius: 10px;
-    /* background-color: rgb(222, 96, 50); */
 }
 .header_inp p{
     position: absolute;

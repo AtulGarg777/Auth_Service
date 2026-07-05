@@ -23,7 +23,6 @@ function Cards({ query, limit }) {
             fetchSongs();
         } catch (err) {
             console.log("error :", err);
-
         }
     }, [query, limit])
 
@@ -52,7 +51,7 @@ function Cards({ query, limit }) {
                     return (<div key={ind} style={{ width: '9.3rem' }} className="card">
                         <div style={{ backgroundImage: `url(${song.image[1].url})` }} className="card_img">
                             <div className="card_btn">
-                                <p style={{ textAlign: 'center' }} onClick={() => handlePlayBtn(song)}><i className={isCurrentActive && isPlaying ? "fa fa-pause" : "fa fa-play"}></i></p>
+                                <p style={{ textAlign: 'center' ,cursor:'pointer'}} onClick={() => handlePlayBtn(song)}><i className={isCurrentActive && isPlaying ? "fa fa-pause" : "fa fa-play"}></i></p>
                                 <div className="like_donlod">
                                     {/* <p><i className="fa-regular fa-heart"></i></p> */}
                                     <p><i className="fa-solid fa-download"></i></p>
@@ -63,7 +62,7 @@ function Cards({ query, limit }) {
                         <div style={{ position: 'relative' }}>
                             <h5 style={{ margin: '5px 0px 0px 0px' }}>{song.name}</h5>
                             <h6 style={{ margin: '0px 0px 5px 0px' }}>{song.artists.primary[0].name}
-                                <small className="card_time" style={{ marginTop: '0px', position: 'absolute', right: '2px',  }}>{formatTime(song.duration)}</small>
+                                <span className="card_time" style={{ marginTop: '0px', position: 'absolute', right: '2px',  }}>{formatTime(song.duration)}</span>
                             </h6>
 
                         </div>

@@ -12,6 +12,7 @@ export function AudioProvider({ children }) {
     let [currentInd, setCurrentInd] = useState(-1);
     let [currentTime, setCurrentTime] = useState(0);
     let [duration, setDuration] = useState(0);
+    let [songVolume, setSongVolume] = useState(100);
 
     const audioRef = useRef(null);
 
@@ -22,10 +23,14 @@ export function AudioProvider({ children }) {
             handleNext();
         }
 
-        audioRef.current.addEventListener('timeupdate', () => { setCurrentTime(audioRef.current.currentTime) })
-        audioRef.current.addEventListener('loadedmetadata', () => {
-            setDuration(audioRef.current.duration) ,console.log(audioRef.current);
+        audioRef.current.addEventListener('timeupdate', () => {
+            setCurrentTime(audioRef.current.currentTime)
         })
+        audioRef.current.addEventListener('loadedmetadata', () => {
+            setDuration(audioRef.current.duration), console.log(audioRef.current);
+        })
+
+
 
         return () => {
             if (audioRef.current) {
@@ -39,6 +44,12 @@ export function AudioProvider({ children }) {
         audioRef.current.currentTime = newTime.target.value;
         setCurrentTime(newTime.target.value);
     };
+
+    const handleVolume = (vol) => {
+        let newVol = vol.target.value;
+        audioRef.current.volume = parseFloat(newVol / 100);
+        setSongVolume(newVol)
+    }
 
     const playTrack = (track, trackList = []) => {
         if (trackList.length > 0) {
@@ -99,7 +110,7 @@ export function AudioProvider({ children }) {
     }
 
     return (
-        <AudioContext.Provider value={{ currentTrack, currentInd, isPlaying, handleNext, handlePrev, queue, playTrack, togglePlayPause, handleSeek, currentTime, duration }}>
+        <AudioContext.Provider value={{ currentTrack, currentInd, isPlaying, handleNext, handlePrev, queue, playTrack, togglePlayPause, handleSeek, currentTime, duration, handleVolume, songVolume }}>
             {children}
         </AudioContext.Provider>
     )

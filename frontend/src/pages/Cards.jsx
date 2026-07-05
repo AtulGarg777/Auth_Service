@@ -10,13 +10,29 @@ function Cards({ query, limit }) {
     let [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchSongs() {
-            let response = await songFromApi(query, limit);
-            setTrendingSongs(response);
-            setIsLoading(false);
+        try {
+            async function fetchSongs() {
+                let response = await songFromApi(query, limit);
+                if (response == null) {
+                    throw new Error("Error Occured During Fetching Songs");
+                    return;
+                }
+                setTrendingSongs(response);
+                setIsLoading(false);
+            }
+            fetchSongs();
+        } catch (err) {
+            console.log("error :", err);
+
         }
-        fetchSongs();
-    }, [limit])
+    }, [query, limit])
+
+    function formatTime(timeInSeconds) {
+        let minutes = Math.floor(timeInSeconds / 60);
+        let seconds = Math.floor(timeInSeconds % 60);
+
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+    }
 
     function handlePlayBtn(song) {
         let isCurrentActive = currentTrack && currentTrack.id == song.id;
@@ -38,16 +54,18 @@ function Cards({ query, limit }) {
                             <div className="card_btn">
                                 <p style={{ textAlign: 'center' }} onClick={() => handlePlayBtn(song)}><i className={isCurrentActive && isPlaying ? "fa fa-pause" : "fa fa-play"}></i></p>
                                 <div className="like_donlod">
-                                    <p><i className="fa-regular fa-heart"></i></p>
+                                    {/* <p><i className="fa-regular fa-heart"></i></p> */}
                                     <p><i className="fa-solid fa-download"></i></p>
                                 </div>
                             </div>
                             <div className="overlay"></div>
                         </div>
-                        <div>
+                        <div style={{ position: 'relative' }}>
                             <h5 style={{ margin: '5px 0px 0px 0px' }}>{song.name}</h5>
-                            <h6 style={{ margin: '0px 0px 5px 0px' }}>{song.artists.primary[0].name}</h6>
-                            <small className="card_time" style={{ marginTop: '0px' }}>{song.duration}</small>
+                            <h6 style={{ margin: '0px 0px 5px 0px' }}>{song.artists.primary[0].name}
+                                <small className="card_time" style={{ marginTop: '0px', position: 'absolute', right: '2px',  }}>{formatTime(song.duration)}</small>
+                            </h6>
+
                         </div>
                         <br />
                     </div>

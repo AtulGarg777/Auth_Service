@@ -10,6 +10,8 @@ export function AudioProvider({ children }) {
     let [isPlaying, setIsPlaying] = useState(false);
     let [queue, setQueue] = useState([]);
     let [currentInd, setCurrentInd] = useState(-1);
+    let [currentTime, setCurrentTime] = useState(0);
+    let [duration, setDuration] = useState(0);
 
     const audioRef = useRef(null);
 
@@ -20,12 +22,23 @@ export function AudioProvider({ children }) {
             handleNext();
         }
 
+        audioRef.current.addEventListener('timeupdate', () => { setCurrentTime(audioRef.current.currentTime) })
+        audioRef.current.addEventListener('loadedmetadata', () => {
+            setDuration(audioRef.current.duration) ,console.log(audioRef.current);
+        })
+
         return () => {
             if (audioRef.current) {
                 audioRef.current.pause()
             }
         }
     }, []);
+
+
+    const handleSeek = (newTime) => {
+        audioRef.current.currentTime = newTime.target.value;
+        setCurrentTime(newTime.target.value);
+    };
 
     const playTrack = (track, trackList = []) => {
         if (trackList.length > 0) {
@@ -86,7 +99,7 @@ export function AudioProvider({ children }) {
     }
 
     return (
-        <AudioContext.Provider value={{ currentTrack, currentInd, isPlaying, handleNext, handlePrev, queue, playTrack, togglePlayPause }}>
+        <AudioContext.Provider value={{ currentTrack, currentInd, isPlaying, handleNext, handlePrev, queue, playTrack, togglePlayPause, handleSeek, currentTime, duration }}>
             {children}
         </AudioContext.Provider>
     )

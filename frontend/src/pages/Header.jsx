@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { songFromApi } from '../utils';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
 
@@ -23,7 +23,7 @@ function Header() {
     return (
         <div className='header'>
             <div>
-                <h2 style={{color:'white'}} onClick={navigate('/home')}>LOGO</h2>
+                <h2 style={{color:'white'}}><Link to='/home'>LOGO</Link></h2>
             </div>
             <div className='header_inp'>
                 <input type="text" name='search' placeholder='Search...' value={srchQuery} onChange={(e) => handleSrch(e)} />

@@ -39,7 +39,7 @@
 
 .like_donlod {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .card_btn {
@@ -59,6 +59,7 @@
 
 .botm_song_info {
     display: flex;
+    width: 280px;
 }
 
 .botm_heart_sound {

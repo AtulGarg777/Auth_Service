@@ -19,7 +19,8 @@ function Login() {
             return handleError("Enter Email And Password");
         }
         try {
-            let response = await fetch('http://localhost:8000/auth/login', {
+            let baseUrl=import.meta.env.VITE_API_URL;
+            let response = await fetch(`${baseUrl}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

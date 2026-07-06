@@ -20,7 +20,7 @@ function Login() {
         }
         try {
             let baseUrl=import.meta.env.VITE_API_URL;
-            let response = await fetch(`${baseUrl}/auth/login`, {
+            let response = await fetch(`${baseUrl.replace(/\/+$/,"")}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

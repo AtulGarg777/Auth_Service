@@ -29,11 +29,11 @@ function Home() {
         <div>
             <Header />
 
-            <section className='' style={{ margin: '20px 6rem' }}>
+            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
                 <h2 style={{ marginBottom: '0px' }}>Trending Songs</h2>
                 <Cards limit={10} query={'sid'} />
             </section>
-            <section className='' style={{ margin: '20px 6rem' }}>
+            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
                     <h2 style={{ marginBottom: '0px' }}>Popular Songs</h2>
                     <Cards limit={10} query={'dilj'} />
                 </section><br />

@@ -24,7 +24,8 @@ function Signup() {
             return handleError('name, email and password is required');
         }
         try {
-            const url = 'http://localhost:8000/auth/signup';
+            let baseUrl=import.meta.env.VITE_API_URL;
+            const url = `${baseUrl.replace(/\/+$/,"")}/auth/signup`;
             let response = await fetch(url, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },

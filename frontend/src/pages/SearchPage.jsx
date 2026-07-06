@@ -10,7 +10,7 @@ function SearchPage() {
     return (
         <div>
             <Header />
-            <section className='' style={{ margin: '20px 6rem' }}>
+            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
                 <Cards limit={30} query={q} />
             </section>
             <MusicBar />

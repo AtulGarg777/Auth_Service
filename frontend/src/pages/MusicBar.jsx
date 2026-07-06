@@ -15,7 +15,7 @@ function MusicBar() {
 
   if (!currentTrack) return null;
   return (
-    <div style={{ position: 'sticky', bottom: '0px' }}>
+    <div style={{ position: 'sticky', bottom: '0px' ,color:'whitesmoke'}}>
       <div className='botm_bar'>
         <div className='botm_song_info'>
           <img width='50px' src={currentTrack.image?.[1].url || "https://placehold.co/50"} alt="" />

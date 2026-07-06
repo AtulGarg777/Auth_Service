@@ -18,6 +18,7 @@ function Login() {
         if (!email || !password) {
             return handleError("Enter Email And Password");
         }
+        
         try {
             let baseUrl=import.meta.env.VITE_API_URL;
             let response = await fetch(`${baseUrl.replace(/\/+$/,"")}/auth/login`, {

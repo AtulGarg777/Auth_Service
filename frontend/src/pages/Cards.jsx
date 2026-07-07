@@ -44,25 +44,24 @@ function Cards({ query, limit }) {
 
     return (
         <>
-            <div className="cards_parent">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 justify-items-center py-5 shadow-xl/20">
                 {isLoading ? <p>Loading...</p> : trendingSongs.map((song, ind) => {
                     const isCurrentActive = currentTrack && currentTrack.id == song.id;
 
-                    return (<div key={ind} style={{ width: '9.3rem' }} className="card">
-                        <div style={{ backgroundImage: `url(${song.image[1].url})` }} className="card_img">
-                            <div className="card_btn">
-                                <p style={{ textAlign: 'center' ,cursor:'pointer'}} onClick={() => handlePlayBtn(song)}><i className={isCurrentActive && isPlaying ? "fa fa-pause" : "fa fa-play"}></i></p>
-                                <div className="like_donlod">
+                    return (<div className="max-w-[7rem] sm:max-w-[9.3rem] h-fit shadow-xl/50" key={ind}>
+                        <div className="bg-cover sm:h-[9.3rem] h-[7rem] min-w-[7rem] sm:w-[9.3rem]" style={{ backgroundImage: `url(${song.image[1].url})` }} >
+                            <div>
+                                <p onClick={() => handlePlayBtn(song)} className="cursor-pointer"><i className={`${isCurrentActive && isPlaying ? "fa fa-pause" : "fa fa-play"} bg-red-400 p-3.5 shadow-2xl/20`}></i></p>
+                                <div>
                                     {/* <p><i className="fa-regular fa-heart"></i></p> */}
-                                    <p><i className="fa-solid fa-download"></i></p>
+                                    {/* <p><i className="fa-solid fa-download"></i></p> */}
                                 </div>
                             </div>
-                            <div className="overlay"></div>
                         </div>
-                        <div style={{ position: 'relative' }}>
-                            <h5 style={{ margin: '5px 0px 0px 0px' }}>{song.name}</h5>
-                            <h6 style={{ margin: '0px 0px 5px 0px' }}>{song.artists.primary[0].name}
-                                <span className="card_time" style={{ marginTop: '0px', position: 'absolute', right: '2px',  }}>{formatTime(song.duration)}</span>
+                        <div >
+                            <h5 className="clamp">{song.name}</h5>
+                            <h6 className="flex justify-between">{song.artists.primary[0].name}
+                                <span className="text-neutral-500">{formatTime(song.duration)}</span>
                             </h6>
 
                         </div>

@@ -3,6 +3,7 @@ import Cards from './Cards'
 import { useSearchParams } from 'react-router-dom'
 import MusicBar from './MusicBar';
 import Header from './Header';
+import CardsSection from './CardsSection';
 
 function SearchPage() {
     let [searchParams] = useSearchParams();
@@ -10,9 +11,7 @@ function SearchPage() {
     return (
         <div>
             <Header />
-            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
-                <Cards limit={30} query={q} />
-            </section>
+            <CardsSection limit={30} query={q} songCategory={`${q} Song`}/>
             <MusicBar />
         </div>
     )

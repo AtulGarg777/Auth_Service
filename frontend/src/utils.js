@@ -11,7 +11,7 @@ const handleError = (msg) => {
 const songFromApi = async (query, limit) => {
     try {
         let cacheKey = `songs${query}_${limit}`;
-        let cacheExpireTime = 1000 * 60;
+        let cacheExpireTime = 1000 * 60 * 5;
 
         let cacheData = sessionStorage.getItem(cacheKey);
 

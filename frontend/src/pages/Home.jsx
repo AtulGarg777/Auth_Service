@@ -7,6 +7,7 @@ import '../css/songCard.css'
 import Cards from './Cards';
 import MusicBar from './MusicBar';
 import Header from './Header';
+import CardsSection from './CardsSection';
 
 function Home() {
 
@@ -18,31 +19,16 @@ function Home() {
         setUserName(localStorage.getItem('User'))
     }, [])
 
-    const handleLogout = () => {
-        localStorage.removeItem('Token');
-        localStorage.removeItem('User');
-        navigate('/login');
-        handleSuccess('logout successfully');
-    }
-
     return (
         <div>
             <Header />
-
-            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
-                <h2 style={{ marginBottom: '0px' }}>Trending Songs</h2>
-                <Cards limit={10} query={'sid'} />
-            </section>
-            <section className='' style={{ margin: '20px 6rem',color:'white' }}>
-                    <h2 style={{ marginBottom: '0px' }}>Popular Songs</h2>
-                    <Cards limit={10} query={'dilj'} />
-                </section><br />
+            <CardsSection songCategory={'Trending Songs'} limit={12} query={'sid'} />
+            <CardsSection songCategory={'Popular Songs'} limit={12} query={'dilj'} />
+            <MusicBar />
 
             {/* <div>
                 <h2>Welcome, {userName}</h2>
-                <button type='button' onClick={handleLogout}>Logout</button>
             </div> */}
-            <MusicBar />
 
         </div>
 

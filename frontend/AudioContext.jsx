@@ -19,26 +19,34 @@ export function AudioProvider({ children }) {
     useEffect(() => {
         audioRef.current = new Audio();
 
-        audioRef.current.onended = () => {
+
+        const onEndListener = () => {
             handleNext();
         }
 
-        audioRef.current.addEventListener('timeupdate', () => {
+        const ontimeUpdate = () => {
             setCurrentTime(audioRef.current.currentTime)
-        })
-        audioRef.current.addEventListener('loadedmetadata', () => {
+        }
+
+        const onLoadMetaData = () => {
             setDuration(audioRef.current.duration), console.log(audioRef.current);
-        })
+        }
+
+        audioRef.current.addEventListener('ended', onEndListener);
+
+        audioRef.current.addEventListener('timeupdate', ontimeUpdate);
+        audioRef.current.addEventListener('loadedmetadata', onLoadMetaData);
 
 
 
         return () => {
             if (audioRef.current) {
                 audioRef.current.pause()
+                audioRef.current.removeEventListener('timeupdate', ontimeUpdate);
+                audioRef.current.removeEventListener('loadedmetadata', onLoadMetaData);
             }
         }
     }, []);
-
 
     const handleSeek = (newTime) => {
         audioRef.current.currentTime = newTime.target.value;

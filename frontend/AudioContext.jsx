@@ -46,7 +46,7 @@ export function AudioProvider({ children }) {
                 audioRef.current.removeEventListener('loadedmetadata', onLoadMetaData);
             }
         }
-    }, [currentInd,queue]);
+    }, []);
 
     const handleSeek = (newTime) => {
         audioRef.current.currentTime = newTime;
@@ -90,14 +90,12 @@ export function AudioProvider({ children }) {
 
     function handleNext() {
         try {
-            // console.log("called");
             console.log(queue, currentInd);
 
             if (queue.length == 0 || currentInd == -1) return;
 
             let nextInd = (currentInd + 1) % queue.length;
             setCurrentInd(nextInd);
-            // console.log("first");
 
             let nextTrack = queue[nextInd];
 
@@ -105,8 +103,6 @@ export function AudioProvider({ children }) {
             setCurrentTrack(nextTrack);
             audioRef.current.play();
             setIsPlaying(true);
-            // console.log(nextInd,currentTrack);
-            // console.log("dfgf");
         }
         catch (err) {
             console.log(err);

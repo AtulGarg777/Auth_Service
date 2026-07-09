@@ -55,7 +55,7 @@ function Login() {
     return (
         <div>
             <form action="" onSubmit={handleLogin} style={{ padding: '20px 50px' }}>
-                <h2>Login</h2>
+                <h2><b className='text-purple-600 text-3xl'>Login</b></h2>
                 <div>
                     <label htmlFor="email">Email</label>
                     <input type="email" name='email' placeholder='Enter Your Email' value={loginInfo.email} onChange={handleValue} />
@@ -66,7 +66,7 @@ function Login() {
                 </div>
                 <button type='submit' style={{ margin: '0 auto', cursor: 'pointer' }}>Login</button>
 
-                <h3>Don't Have an account <Link to='/signup'>SignUp</Link></h3>
+                <h3>Don't Have an account? <Link to='/signup' className='text-purple-600'>SignUp</Link></h3>
             </form>
         </div>
     )

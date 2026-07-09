@@ -52,22 +52,23 @@ function Signup() {
     return (
         <div>
             <form action="" onSubmit={handleSubmit}>
-                <h2>Sign Up</h2>
+                <h2 className='text-purple-600 text-3xl'><b>Sign Up</b></h2>
                 <div>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name" className='text-purple-600'><b>Name</b></label>
                     <input type="text" placeholder='Enter Your Name' name='name' value={signupInfo.name} onChange={handleValue} />
                 </div>
                 <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email" className='text-purple-600'><b>Email</b></label>
                     <input type="email" placeholder='Enter Your Email' name='email' value={signupInfo.email} onChange={handleValue} />
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password" className='text-purple-600'><b>Password</b></label>
                     <input type="password" placeholder='Enter Your password' name='password' value={signupInfo.password} onChange={handleValue} />
                 </div>
-                <button type='submit' style={{ margin: '0 auto', cursor: 'pointer' }}>Signup</button>
+                <button type='submit' className='cursor-pointer' style={{ margin: '0 auto'}}>Signup</button>
                 <div>
-                    <h3>Already Have an account? <Link to='/login'>Login</Link></h3>
+                    <h3>Already Have an account? <Link to='/login' className='text-purple-600 '>
+                    <b>Login</b></Link></h3>
                 </div>
             </form>
         </div>

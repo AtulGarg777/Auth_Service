@@ -20,7 +20,6 @@ export function AudioProvider({ children }) {
         audioRef.current = new Audio();
 
         const onEndListener = () => {
-            console.log("song ended");
             handleNext();
         }
 

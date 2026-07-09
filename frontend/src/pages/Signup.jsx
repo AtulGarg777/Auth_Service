@@ -44,9 +44,6 @@ function Signup() {
             } else if (!success) {
                 handleError(message);
             }
-
-            console.log(result);
-
         } catch (error) {
             handleError(error.message);
         }

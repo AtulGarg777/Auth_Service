@@ -19,8 +19,8 @@ export function AudioProvider({ children }) {
     useEffect(() => {
         audioRef.current = new Audio();
 
-
         const onEndListener = () => {
+            console.log("song ended");
             handleNext();
         }
 
@@ -46,17 +46,16 @@ export function AudioProvider({ children }) {
                 audioRef.current.removeEventListener('loadedmetadata', onLoadMetaData);
             }
         }
-    }, []);
+    }, [currentInd,queue]);
 
     const handleSeek = (newTime) => {
-        audioRef.current.currentTime = newTime.target.value;
-        setCurrentTime(newTime.target.value);
+        audioRef.current.currentTime = newTime;
+        setCurrentTime(newTime);
     };
 
     const handleVolume = (vol) => {
-        let newVol = vol.target.value;
-        audioRef.current.volume = parseFloat(newVol / 100);
-        setSongVolume(newVol)
+        audioRef.current.volume = parseFloat(vol / 100);
+        setSongVolume(vol)
     }
 
     const playTrack = (track, trackList = []) => {
@@ -90,18 +89,30 @@ export function AudioProvider({ children }) {
     }
 
     function handleNext() {
-        if (queue.length == 0 || currentInd == -1) return;
+        try {
+            // console.log("called");
+            console.log(queue, currentInd);
 
-        let nextInd = (currentInd + 1) % queue.length;
-        setCurrentInd(nextInd);
-        let nextTrack = queue[nextInd];
+            if (queue.length == 0 || currentInd == -1) return;
 
-        console.log(nextTrack);
+            let nextInd = (currentInd + 1) % queue.length;
+            setCurrentInd(nextInd);
+            // console.log("first");
 
-        audioRef.current.src = nextTrack.downloadUrl[nextTrack.downloadUrl.length - 1].url;
-        setCurrentTrack(nextTrack);
-        audioRef.current.play();
-        setIsPlaying(true);
+            let nextTrack = queue[nextInd];
+
+            audioRef.current.src = nextTrack.downloadUrl[nextTrack.downloadUrl.length - 1].url;
+            setCurrentTrack(nextTrack);
+            audioRef.current.play();
+            setIsPlaying(true);
+            // console.log(nextInd,currentTrack);
+            // console.log("dfgf");
+        }
+        catch (err) {
+            console.log(err);
+
+        }
+
     }
 
     function handlePrev() {

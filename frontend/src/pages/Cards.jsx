@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { songFromApi } from "../utils";
+import { handleError, songFromApi } from "../utils";
 import { useEffect } from "react";
 import { AudioContext } from "../../AudioContext";
 import Header from "./Header";
@@ -13,7 +13,7 @@ function Cards({ query, limit }) {
         try {
             async function fetchSongs() {
                 let response = await songFromApi(query, limit);
-                if (response == null) {
+                if (response == [] || !response?.length) {
                     throw new Error("Error Occured During Fetching Songs");
                     return;
                 }
@@ -44,7 +44,7 @@ function Cards({ query, limit }) {
 
     return (
         <>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 justify-items-center py-5 shadow-xl/20">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-3 justify-items-center py-5 shadow-xl/20">
                 {isLoading ? <p>Loading...</p> : trendingSongs.map((song, ind) => {
                     const isCurrentActive = currentTrack && currentTrack.id == song.id;
 

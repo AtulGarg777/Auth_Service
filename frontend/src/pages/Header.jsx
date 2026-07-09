@@ -30,7 +30,7 @@ function Header() {
     return (
         <div className='bg-neutral-900 text-white sm:flex justify-around py-4 items-center'>
             <div>
-                <h2 className='text-xl'><Link to='/home'>&nbsp;&nbsp;LOGO</Link></h2>
+                <h2 className='text-2xl text-red-500'><Link to='/home'>&nbsp;&nbsp;Streamify</Link></h2>
             </div>
             <div className='flex items-center justify-center pt-1.5'>
                 <div className='flex items-center bg-neutral-950 border-0 rounded-md pe-2.5'>
@@ -38,8 +38,8 @@ function Header() {
                     <p onClick={getSongs}><i className='fa fa-search'></i></p>
 
                 </div>
-                <p className="pl-6">
-                    <button style={{padding:'5px 15px'}} onClick={handleLogout}>Logout</button>
+                <p className="pl-2 sm:pl-6">
+                    <button style={{ padding: '5px 15px', backgroundColor: 'var(--color-red-400)' }} onClick={handleLogout}>Logout</button>
                 </p>
             </div>
         </div>

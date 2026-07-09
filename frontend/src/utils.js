@@ -21,18 +21,17 @@ const songFromApi = async (query, limit) => {
             let parsedCache = JSON.parse(cacheData);
 
             if ((currentTime - parsedCache.timestamp) < cacheExpireTime) {
-                console.log('data got from cache');
+                //data got from cache
                 return parsedCache.data;
             } else {
-                console.log("item removed");
+                // data removed form cache
                 sessionStorage.removeItem(cacheKey);
             }
         }
 
 
         let fetchData = await fetch(`https://saavn.sumit.co/api/search/songs?query=${query}&limit=${limit}`, { method: 'GET' });
-        let result = await fetchData?.json();
-        console.log(result?.data);
+        let result = await fetchData.json();
 
         let cachedDataToSave = {
             data: result.data.results,

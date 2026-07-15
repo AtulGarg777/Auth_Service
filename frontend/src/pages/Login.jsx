@@ -44,6 +44,8 @@ function Login() {
                 handleError(message);
             }
         } catch (error) {
+            console.log("catch block");
+            
             handleError(error);
         }
     }
